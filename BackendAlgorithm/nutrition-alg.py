@@ -4,8 +4,8 @@ from supabase import create_client
 app = Flask(__name__)
 
 # Initialize Supabase client
-supabase_url = "https://omjjgetwuopykhxjgtqz.supabase.co"
-supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9tampnZXR3dW9weWtoeGpndHF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAxNzU1MzcsImV4cCI6MjAyNTc1MTUzN30.2lawS88veUygNaQETe4yEFsYhUuOG8kyyQGpheVzivQ"
+supabase_url = "SUPABASE_URL"
+supabase_key = "SUPABASE_API_KEY"
 supabase = create_client(supabase_url, supabase_key)
 
 
@@ -77,4 +77,5 @@ def get_meal_recommendations():
     return jsonify({'recommendations': recommendations})
 
 
-print(calc_daily_cal("Male", 175.26, 65.77, 19, 1.9, "Maintain"))
+if __name__ == "__main__":
+    app.run(debug = True)
