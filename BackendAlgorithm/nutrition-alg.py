@@ -123,3 +123,12 @@ def get_meal_recommendations():
 
 if __name__ == "__main__":
     app.run(debug = True)
+
+
+
+# Example of how we would want the menu to look like with the healthiness factor at the end
+menu = {
+    "Salad": {"calories": 150, "protein": 5, "carbs": 10, "fats": 8, "healthiness": 9},
+    "Grilled Chicken Sandwich": {"calories": 300, "protein": 25, "carbs": 30, "fats": 12, "healthiness": 7},
+    # Other menu items with healthiness ratings
+}
