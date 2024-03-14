@@ -1,12 +1,12 @@
 .bottom-nav {
-  background: white;
+  background: #88C6FF;
   width: 100vw;
   height: 60px;
   position: fixed;
   right: 0;
   bottom: 0;
   z-index: 1;
-  border-top: 1px solid #F17300;
+  border-top: 1px solid whitesmoke;
 
   nav {
     height: 60px;
@@ -20,12 +20,13 @@
         flex-basis: content;
         flex-grow: 1;
         min-width: 0;
+        color: black;
         height: 100%;
       }
     }
     a.active {
       svg {
-        color: #F17300;
+        color: whitesmoke;
       }
     }
   }
