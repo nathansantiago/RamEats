@@ -60,6 +60,51 @@ def calc_daily_cal(user_data) -> int:
         return result
 
 
+# Placeholder function for calculating meal recommendations based on meal type
+def calculate_meal_recommendations(user_data, meal_type):
+    # Your meal recommendation logic goes here
+    # Must first get the menu for the meal type from the database
+    menu = {} # Placeholder for menu from database
+
+    # Defines the certain restrictions for macros
+    meal_cal: int = 0
+    protein_goal = 0.24
+    carbs_goal = 0.53
+    fats_goal = 0.23
+
+    # Calculates the amount of calories for the meal
+    if meal_type == 'breakfast':
+        meal_cal = calc_daily_cal(user_data) * .22
+    elif meal_type == 'lunch':
+        meal_cal = calc_daily_cal(user_data) * .31
+    elif meal_type == 'dinner':
+        meal_cal = calc_daily_cal(user_data) * .35
+    
+    selected_items = []
+    total_calories = 0
+    total_protein = 0
+    total_carbs = 0
+    total_fats = 0
+
+    # Sort menu items by healthiness rating (higher rating means healthier)
+    sorted_menu = sorted(menu.items(), key=lambda x: x[1]["healthiness"], reverse=True)
+
+    # Iterate through sorted menu items and select items until total calories reach the limit
+    for item, info in sorted_menu:
+        if total_calories + info["calories"] <= meal_cal:
+            # Check if adding this item exceeds macronutrient limits
+            if ((total_protein + info["protein"]) * 4) / total_calories <= protein_goal \
+                and ((total_carbs + info["carbs"]) * 4) / total_calories <= carbs_goal \
+                and ((total_fats + info["fats"]) * 9) / total_calories <= fats_goal:
+                selected_items.append(item)
+                total_calories += info["calories"]
+                total_protein += info["protein"]
+                total_carbs += info["carbs"]
+                total_fats += info["fats"]
+
+    return selected_items, total_calories, total_protein, total_carbs, total_fats
+
+
 # Endpoint for getting meal recommendations
 @app.route('/meal_recommendations', methods=['POST'])
 def get_meal_recommendations():
@@ -74,12 +119,6 @@ def get_meal_recommendations():
         'snacks': f"{(calc_daily_cal() * .12)} calories" # Come back and add the arguments
     }
     return jsonify(recommendations)
-
-# Placeholder function for calculating meal recommendations based on meal type
-def calculate_meal_recommendations(user_data, meal_type):
-    # Your meal recommendation logic goes here
-    # This is just a placeholder
-    return ["Salad", "Grilled Chicken", "Fruits"]
 
 
 if __name__ == "__main__":
