@@ -25,7 +25,11 @@
             display: flex;
             flex-direction: column;
 
-            button {
+            label {
+                font-weight: 600;
+            }
+
+            .login {
                 margin-top: 10px;
                 color: #88C6FF;
                 background-color: whitesmoke;
@@ -33,6 +37,8 @@
                 padding: 10px 0px;
                 font-size: xx-large;
                 font-weight: 900;
+                cursor: pointer;
+                box-shadow: 3px 3px 1px;
             }
 
             input {
@@ -41,6 +47,21 @@
                 background-color: #88C6FF;
                 margin-bottom: 10px;
             }
+
+            .newPass {
+                align-self: center;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    p {
+        position: absolute;
+        bottom: 2vh;
+
+        .signUp {
+            cursor: pointer;
         }
     }
 }
