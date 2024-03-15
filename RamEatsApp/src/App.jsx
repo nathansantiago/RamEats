@@ -4,6 +4,7 @@ import Login from './components/login'
 import Layout from './components/layout'
 import Home from './components/home'
 import Signup from './components/signup'
+import Settings from './components/settings'
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path='settings' element={<Settings />} />
         </Route>
       </Routes>
     </>
